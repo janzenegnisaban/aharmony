@@ -115,17 +115,13 @@
     .btn-glass:hover{background:var(--gw2);border-color:var(--gbg);transform:scale(1.02) translateY(-1px)}
     .btn-glass:active{transform:scale(.98)}
 
-    .hero-stats{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:2rem 2.75rem;margin-top:4rem;
+    .hero-stats{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2rem 2.75rem;margin-top:4rem;
+      align-self:stretch;width:100%;max-width:100%;padding:0 16px;box-sizing:border-box;
       background:transparent;border:none;opacity:0;animation:revUp .8s var(--ease) 1.12s forwards}
-    .hero-stat{flex:0 1 auto;min-width:5.5rem;padding:0 .5rem;text-align:center;background:transparent}
+    .hero-stat{flex:0 1 auto;min-width:5.5rem;max-width:100%;padding:0 .5rem;text-align:center;background:transparent}
     .stat-num{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);display:block}
     .stat-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tm);display:block;margin-top:.25rem}
 
-    .scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;
-      align-items:center;gap:.4rem;opacity:0;animation:revUp .8s var(--ease) 1.42s forwards}
-    .scroll-cue span{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--tm)}
-    .scroll-track{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sLine 2s ease-in-out infinite}
-    @keyframes sLine{0%{transform:scaleY(0);transform-origin:top;opacity:1}50%{transform:scaleY(1);transform-origin:top;opacity:1}100%{transform:scaleY(1);transform-origin:bottom;opacity:0}}
     @keyframes revUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
     /* glass card */
@@ -261,6 +257,27 @@
     /* ── TESTIMONIALS ── */
     #testimonials{position:relative;z-index:1}
     .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;max-width:1100px;margin:0 auto}
+
+    /* ── GALLERY (public materials: promos, before/after, salon moments) ── */
+    #gallery{position:relative;z-index:1}
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;max-width:1100px;margin:0 auto}
+    button.gallery-item{display:block;width:100%;padding:0;margin:0;border:none;background:transparent;font:inherit;text-align:left;cursor:pointer;
+      -webkit-tap-highlight-color:transparent;appearance:none}
+    .gallery-item{position:relative;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--gb);background:var(--gw);
+      aspect-ratio:1;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s;box-shadow:var(--shadow-card)}
+    .gallery-item:hover{transform:translateY(-3px);border-color:var(--gbg);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+    .gallery-item:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+    .gallery-note{font-size:.82rem;color:var(--tm);text-align:center;margin-top:1.5rem;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.65;font-weight:300}
+    #lightbox{position:fixed;inset:0;z-index:3000;background:rgba(5,15,10,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      display:none;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+    #lightbox.is-open{display:flex}
+    #lightbox .lb-close{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(16px,env(safe-area-inset-right));width:44px;height:44px;
+      border:none;border-radius:50%;background:var(--gw);border:1px solid var(--gb);color:var(--cream);font-size:1.5rem;line-height:1;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;z-index:1;touch-action:manipulation}
+    #lightbox .lb-close:hover{background:var(--gw2)}
+    #lightbox .lb-img{max-width:min(94vw,920px);max-height:min(88vh,900px);width:auto;height:auto;object-fit:contain;border-radius:var(--r-md);
+      box-shadow:0 24px 80px rgba(0,0,0,.55)}
     .tcard{padding:2rem;border-radius:var(--r-xl);background:var(--gw);border:1px solid var(--gb);
       backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:all .3s var(--ease)}
     .tcard:hover{border-color:var(--gbg);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
@@ -319,6 +336,7 @@
     @media(max-width:1024px){
       .pgrid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
       .tgrid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+      .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
     }
     @media(max-width:840px){
       .nav-links{display:none}.hamburger{display:flex}
@@ -337,8 +355,8 @@
       .cgrid{grid-template-columns:1fr}
       .mapfr{height:clamp(260px,42vw,320px)}
       .cinfo{padding:2rem}
-      .hero-stats{flex-direction:column;gap:1.25rem;width:100%;max-width:280px;margin-left:auto;margin-right:auto}
-      .hero-stat{padding:0 1rem}
+      .hero-stats{flex-direction:column;align-items:center;gap:1.25rem;width:100%;max-width:100%;margin-left:auto;margin-right:auto;padding:0 20px}
+      .hero-stat{padding:0 1rem;width:100%;max-width:220px}
       .frow{grid-template-columns:1fr}
       .wbody{padding:1.5rem}
       .wtbar{padding:.85rem 1rem;gap:.35rem}
@@ -362,6 +380,7 @@
       .hero-pill{font-size:.62rem;padding:.4rem .85rem .4rem .45rem}
       .stab{padding:.45rem .75rem;font-size:.65rem;min-height:38px}
       .pgrid,.tgrid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:repeat(2,1fr);gap:10px}
       .sgrid{grid-template-columns:1fr;gap:10px}
       .fi{flex-direction:column;text-align:center}
       .flinks{justify-content:center;flex-wrap:wrap;gap:1rem}
@@ -386,7 +405,7 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="#hero" class="nav-brand">
-      <img class="nav-logo-img" src="432748533_387703250746164_2095833612198361449_n.jpg" width="40" height="40" alt="" decoding="async" fetchpriority="high">
+      <img class="nav-logo-img" src="public/432748533_387703250746164_2095833612198361449_n.jpg" width="40" height="40" alt="" decoding="async" fetchpriority="high">
       <span class="nav-logo-text">A. Harmony</span>
     </a>
     <ul class="nav-links">
@@ -394,6 +413,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#promos">Promos</a></li>
       <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#booking" class="nav-cta">Book Now</a></li>
     </ul>
@@ -404,11 +424,12 @@
 <!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="drawer">
   <button class="mob-close" onclick="toggleMenu()">✕</button>
-  <img class="drawer-brand" src="432748533_387703250746164_2095833612198361449_n.jpg" width="80" height="80" alt="A. Harmony Wellness Spa" decoding="async">
+  <img class="drawer-brand" src="public/432748533_387703250746164_2095833612198361449_n.jpg" width="80" height="80" alt="A. Harmony Wellness Spa" decoding="async">
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#services" onclick="toggleMenu()">Services</a>
   <a href="#promos" onclick="toggleMenu()">Promos</a>
   <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
   <a href="#booking" onclick="toggleMenu()">Book Now</a>
 </div>
@@ -418,7 +439,7 @@
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
-  <img class="hero-brand" src="432748533_387703250746164_2095833612198361449_n.jpg" width="200" height="200" alt="A. Harmony Wellness Spa" decoding="async" fetchpriority="high">
+  <img class="hero-brand" src="public/432748533_387703250746164_2095833612198361449_n.jpg" width="200" height="200" alt="A. Harmony Wellness Spa" decoding="async" fetchpriority="high">
   <div class="hero-pill"><span class="pill-dot"></span>Glow starts here <span aria-hidden="true">✨</span></div>
   <h1 class="hero-title">A. Harmony</h1>
   <p class="hero-wm">Wellness Spa</p>
@@ -434,7 +455,6 @@
     <div class="hero-stat"><span class="stat-num">100%</span><span class="stat-label">Premium</span></div>
     <div class="hero-stat"><span class="stat-num">★ 5.0</span><span class="stat-label">Rated</span></div>
   </div>
-  <div class="scroll-cue"><span>Scroll</span><div class="scroll-track"></div></div>
 </section>
 
 <!-- ABOUT -->
@@ -673,6 +693,37 @@
   </div>
 </section>
 
+<!-- GALLERY (images in /public — promos, ads, before & after clients) -->
+<section id="gallery">
+  <div class="sw">
+    <div class="sh">
+      <div class="eyebrow reveal">Our Work</div>
+      <h2 class="stitle reveal d1">Gallery</h2>
+      <p class="ssub reveal d2">Promos, treatments, and before &amp; after moments from clients at A.Harmony.</p>
+    </div>
+    <div class="gallery-grid reveal" id="gallery-grid">
+      <button type="button" class="gallery-item reveal d1" aria-label="Enlarge gallery photo 1"><img src="public/432748533_387703250746164_2095833612198361449_n.jpg" alt="A.Harmony Wellness Spa — gallery 1" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d2" aria-label="Enlarge gallery photo 2"><img src="public/641397112_897407966442354_6755987835640061976_n.jpg" alt="A.Harmony Wellness Spa — gallery 2" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d3" aria-label="Enlarge gallery photo 3"><img src="public/641784733_899085916274559_6505305457987759547_n.jpg" alt="A.Harmony Wellness Spa — gallery 3" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d1" aria-label="Enlarge gallery photo 4"><img src="public/645092797_901559129360571_2857940093021400291_n.jpg" alt="A.Harmony Wellness Spa — gallery 4" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d2" aria-label="Enlarge gallery photo 5"><img src="public/645674862_903867232463094_2555357692659135867_n.jpg" alt="A.Harmony Wellness Spa — gallery 5" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d3" aria-label="Enlarge gallery photo 6"><img src="public/647132370_905303258986158_6777665246473154296_n.jpg" alt="A.Harmony Wellness Spa — gallery 6" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d1" aria-label="Enlarge gallery photo 7"><img src="public/648325318_905303268986157_5696881830276201587_n.jpg" alt="A.Harmony Wellness Spa — gallery 7" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d2" aria-label="Enlarge gallery photo 8"><img src="public/648802829_905303208986163_5809521676534757765_n.jpg" alt="A.Harmony Wellness Spa — gallery 8" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d3" aria-label="Enlarge gallery photo 9"><img src="public/650225438_907608695422281_726159749323333005_n.jpg" alt="A.Harmony Wellness Spa — gallery 9" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d1" aria-label="Enlarge gallery photo 10"><img src="public/650255303_909738135209337_907150151068962529_n.jpg" alt="A.Harmony Wellness Spa — gallery 10" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d2" aria-label="Enlarge gallery photo 11"><img src="public/653018276_912846404898510_9112103986075248079_n.jpg" alt="A.Harmony Wellness Spa — gallery 11" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d3" aria-label="Enlarge gallery photo 12"><img src="public/653925190_912846358231848_5669399912331202670_n.jpg" alt="A.Harmony Wellness Spa — gallery 12" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d1" aria-label="Enlarge gallery photo 13"><img src="public/654232258_916076031242214_3611575213451913819_n.jpg" alt="A.Harmony Wellness Spa — gallery 13" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d2" aria-label="Enlarge gallery photo 14"><img src="public/656836507_922042893978861_7545434363595914903_n.jpg" alt="A.Harmony Wellness Spa — gallery 14" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d3" aria-label="Enlarge gallery photo 15"><img src="public/657143032_920333664149784_8685762026772488910_n.jpg" alt="A.Harmony Wellness Spa — gallery 15" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d1" aria-label="Enlarge gallery photo 16"><img src="public/657172356_918778064305344_8621061979423053788_n.jpg" alt="A.Harmony Wellness Spa — gallery 16" loading="lazy" width="400" height="400" decoding="async"></button>
+      <button type="button" class="gallery-item reveal d2" aria-label="Enlarge gallery photo 17"><img src="public/658132875_922845697231914_7763812048483397541_n.jpg" alt="A.Harmony Wellness Spa — gallery 17" loading="lazy" width="400" height="400" decoding="async"></button>
+    </div>
+    <p class="gallery-note reveal">Tap any photo to view it larger. New images can be added to the <code style="font-size:.85em;opacity:.9">public</code> folder on your site.</p>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="sw">
@@ -719,13 +770,18 @@
 <footer>
   <div class="fi">
     <div class="fbrand-wrap">
-      <img class="fbrand-img" src="432748533_387703250746164_2095833612198361449_n.jpg" width="36" height="36" alt="" decoding="async">
+      <img class="fbrand-img" src="public/432748533_387703250746164_2095833612198361449_n.jpg" width="36" height="36" alt="" decoding="async">
       <span class="fbrand">A. Harmony</span>
     </div>
     <p class="fcopy">© 2026 A. Harmony Wellness Spa. All rights reserved.</p>
-    <div class="flinks"><a href="#services">Services</a><a href="#booking">Book</a><a href="#contact">Contact</a></div>
+    <div class="flinks"><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#booking">Book</a><a href="#contact">Contact</a></div>
   </div>
 </footer>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo" aria-hidden="true">
+  <button type="button" class="lb-close" aria-label="Close photo">&times;</button>
+  <img class="lb-img" alt="">
+</div>
 
 <script>
   const BOOKING_EMAIL = 'a.harmonywellness.spa@gmail.com';
@@ -754,6 +810,42 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
   }, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Gallery lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = lightbox.querySelector('.lb-img');
+  const lbClose = lightbox.querySelector('.lb-close');
+  let lbPrevOverflow = '';
+
+  function openLightbox(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    lbPrevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lbImg.removeAttribute('src');
+    lbImg.alt = '';
+    document.body.style.overflow = lbPrevOverflow;
+  }
+
+  document.querySelectorAll('.gallery-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const img = btn.querySelector('img');
+      if (img) openLightbox(img.currentSrc || img.src, img.alt);
+    });
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  lbClose.addEventListener('click', closeLightbox);
 
   // ── Service picker modal (styled like site glass UI; avoids iOS native select wheel) ──
   const svcModal = document.getElementById('svc-modal');
@@ -815,7 +907,9 @@
   document.getElementById('svc-modal-cancel').addEventListener('click', closeSvcModal);
   document.getElementById('svc-modal-bg').addEventListener('click', closeSvcModal);
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && svcModal.classList.contains('open')) closeSvcModal();
+    if (e.key !== 'Escape') return;
+    if (lightbox.classList.contains('is-open')) closeLightbox();
+    else if (svcModal.classList.contains('open')) closeSvcModal();
   });
 
   // ── Booking time slots (Google Business hours by day; 30-min steps) ──
