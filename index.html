@@ -47,7 +47,7 @@
       border:1px solid var(--gb);border-radius:var(--r-2xl);box-shadow:var(--shadow-glass);transition:all .4s var(--ease)}
     nav.scrolled .nav-inner{background:rgba(11,31,21,.8);border-color:var(--gbg)}
     .nav-brand{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:inherit;min-width:0}
-    .nav-logo-img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--gbg);flex-shrink:0;
+    .nav-logo-img{height:40px;width:auto;max-width:100px;border-radius:10px;object-fit:contain;border:1px solid var(--gbg);flex-shrink:0;
       box-shadow:0 2px 12px rgba(0,0,0,.2)}
     .nav-logo-text{font-family:'Dancing Script',cursive;font-size:1.35rem;color:var(--gold);letter-spacing:.02em}
     .nav-links{display:flex;align-items:center;gap:.2rem;list-style:none}
@@ -66,7 +66,7 @@
       background:rgba(11,31,21,.94);backdrop-filter:blur(48px);-webkit-backdrop-filter:blur(48px);
       padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0)}
     .mobile-drawer.open{display:flex}
-    .drawer-brand{width:80px;height:80px;border-radius:50%;object-fit:cover;border:1px solid var(--gbg);box-shadow:0 8px 24px rgba(0,0,0,.25);margin-bottom:.25rem}
+    .drawer-brand{width:auto;max-width:min(200px,70vw);height:auto;max-height:140px;border-radius:var(--r-lg);object-fit:contain;border:1px solid var(--gbg);box-shadow:0 8px 24px rgba(0,0,0,.25);margin-bottom:.25rem}
     .mobile-drawer a{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--ts);text-decoration:none;transition:color .25s}
     .mobile-drawer a:hover{color:var(--gold)}
     .mob-close{position:absolute;top:calc(20px + env(safe-area-inset-top,0));right:calc(24px + env(safe-area-inset-right,0));background:var(--gw);border:1px solid var(--gb);border-radius:50%;
@@ -405,7 +405,7 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="#hero" class="nav-brand">
-      <img class="nav-logo-img" src="public/432748533_387703250746164_2095833612198361449_n.jpg" width="40" height="40" alt="" decoding="async" fetchpriority="high">
+      <img class="nav-logo-img" src="logo.jpg" width="40" height="40" alt="" decoding="async" fetchpriority="high">
       <span class="nav-logo-text">A. Harmony</span>
     </a>
     <ul class="nav-links">
@@ -424,7 +424,7 @@
 <!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="drawer">
   <button class="mob-close" onclick="toggleMenu()">✕</button>
-  <img class="drawer-brand" src="public/432748533_387703250746164_2095833612198361449_n.jpg" width="80" height="80" alt="A. Harmony Wellness Spa" decoding="async">
+  <img class="drawer-brand" src="logo.jpg" width="80" height="80" alt="A. Harmony Wellness Spa" decoding="async">
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#services" onclick="toggleMenu()">Services</a>
   <a href="#promos" onclick="toggleMenu()">Promos</a>
@@ -439,7 +439,7 @@
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
-  <img class="hero-brand" src="public/432748533_387703250746164_2095833612198361449_n.jpg" width="200" height="200" alt="A. Harmony Wellness Spa" decoding="async" fetchpriority="high">
+  <img class="hero-brand" src="logo.jpg" width="200" height="200" alt="A. Harmony Wellness Spa" decoding="async" fetchpriority="high">
   <div class="hero-pill"><span class="pill-dot"></span>Glow starts here <span aria-hidden="true">✨</span></div>
   <h1 class="hero-title">A. Harmony</h1>
   <p class="hero-wm">Wellness Spa</p>
